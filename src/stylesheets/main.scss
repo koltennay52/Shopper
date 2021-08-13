@@ -1,0 +1,66 @@
+// Your styles go here
+// Styles
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-serif: 'Archivo', sans-serif;
+$enable-responsive-font-sizes: true;
+
+$theme-colors: (
+  "primary": #202020,
+  "light": #FFFFFF,
+  "secondary": #06BEE1,
+  "info": #F58F29,
+  "danger": #9E0031
+
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+// GLOBAL STYLE RULES
+h1,
+h2,
+h3 {
+  font-family: $font-family-serif;
+}
+
+h4 {
+  font-family: $font-family-sans-serif;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+}
+
+
+li {
+  list-style: none;
+}
+
+.help {
+  color: red;
+}
+
+
+//HOME PAGE 
+.home-hero {
+	background: linear-gradient(rgba(32, 32, 32, 0.6), rgba(255, 255, 255, 1))
+  }
+
+
+.rounded-corners {
+  border-radius: 20%;
+}
+
+
+
+
+// FOOTER STYLING
+// #footer {
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+//   }
+  
