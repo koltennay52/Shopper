@@ -2,17 +2,17 @@
 // Styles
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-$font-family-sans-serif: 'Open Sans', sans-serif;
-$font-family-serif: 'Archivo', sans-serif;
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-serif: 'Roboto', sans-serif;
 $enable-responsive-font-sizes: true;
 
 $theme-colors: (
-  "primary": #202020,
+  "primary": #273043,
   "light": #FFFFFF,
-  "secondary": #06BEE1,
-  "info": #F58F29,
+  "secondary": #9197AE,
+  "info": #F02D3A,
   "danger": #9E0031
 
 );
