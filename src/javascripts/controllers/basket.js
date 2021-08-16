@@ -1,14 +1,14 @@
 export const getBasketContentsAPI = (req, res, next) => {
   let basketName = req.params.basketName;
-  let basketResults;
+  let requestResults;
 
   const request = require("request");
   request(
     `https://getpantry.cloud/apiv1/pantry/7fd410ee-3aa4-4d17-be6c-436eeaa22a72/basket/${basketName}`,
     function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        basketResults = JSON.parse(body);
-        res.status(200).json(basketResults.items);
+      if (!error && response.statusCode == 200) { 
+        requestResults = JSON.parse(body);
+        res.status(200).json(requestResults);
         res.end();
       } else {
         res.status(404);
@@ -20,40 +20,23 @@ export const getBasketContentsAPI = (req, res, next) => {
 
 export const deleteWholeBasketAPI = (req, res, next) => {
   let basketName = req.params.basketName;
-
-  const request = require("request");
-  request(
-    `https://getpantry.cloud/apiv1/pantry/7fd410ee-3aa4-4d17-be6c-436eeaa22a72/basket/${basketName}`,
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.status(200).json(body);
-        res.end();
-      } else {
-        res.status(404);
-        res.end();
-      }
-    }
-  );
-};
-
-export const updateBasketAPI = (req, res, next) => {
-  let basketName = req.params.basketName;
-  let sentBasket = req.body.basket;
+  let requestResults; 
 
   const request = require("request");
 
   const options = {
     url: `https://getpantry.cloud/apiv1/pantry/7fd410ee-3aa4-4d17-be6c-436eeaa22a72/basket/${basketName}`,
-    method: "PUT",
+    method: "DELETE",
     headers: {
       Accept: "application/json",
       Host: "getpantry.cloud",
     },
-    form: sentBasket,
   };
+
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      res.status(200).json(body);
+      requestResults = JSON.parse(body);
+      res.status(200).json(requestResults);
       res.end();
     } else {
       res.status(404);
@@ -62,8 +45,36 @@ export const updateBasketAPI = (req, res, next) => {
   });
 };
 
+export const updateBasketAPI = (req, res, next) => {
+  let basketName = req.params.basketName;
+  let sentBasket = req.body;
+  let stringyMan = JSON.stringify(sentBasket);
+  let requestResults;
+
+  var request = require("request");
+  var options = {
+    method: "PUT",
+    url: `https://getpantry.cloud/apiv1/pantry/7fd410ee-3aa4-4d17-be6c-436eeaa22a72/basket/${basketName}`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: stringyMan,
+  };
+  request(options, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      requestResults = JSON.parse(body);
+      res.status(200).json(requestResults);
+      res.end();
+    } else {
+      res.status(404).json(error);
+      res.end();
+    }
+  });
+};
+
 export const createBasketAPI = (req, res, next) => {
   let basketName = req.params.basketName;
+  let requestResults;
 
   const request = require("request");
 
@@ -77,7 +88,8 @@ export const createBasketAPI = (req, res, next) => {
   };
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      res.status(200).json(body);
+      requestResults = JSON.parse(body);
+      res.status(200).json(requestResults);
       res.end();
     } else {
       res.status(404);
@@ -88,7 +100,7 @@ export const createBasketAPI = (req, res, next) => {
 
 export const getPantryAPI = (req, res, next) => {
   let pantryResults;
-
+  
   const request = require("request");
   request(
     `https://getpantry.cloud/apiv1/pantry/7fd410ee-3aa4-4d17-be6c-436eeaa22a72`,
