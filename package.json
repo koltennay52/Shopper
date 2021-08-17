@@ -5,8 +5,7 @@
   "author": "Kolten Nay",
   "license": "MIT",
   "keywords": [
-    "league",
-    "tracker"
+    "shopper"
   ],
   "scripts": {
     "deploy": "npx webpack",
