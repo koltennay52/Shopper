@@ -35,8 +35,7 @@ export const deleteWholeBasketAPI = (req, res, next) => {
 
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      requestResults = JSON.parse(body);
-      res.status(200).json(requestResults);
+      res.status(200);
       res.end();
     } else {
       res.status(404);
@@ -88,8 +87,7 @@ export const createBasketAPI = (req, res, next) => {
   };
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      requestResults = JSON.parse(body);
-      res.status(200).json(requestResults);
+      res.status(200);
       res.end();
     } else {
       res.status(404);
