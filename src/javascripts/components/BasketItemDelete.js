@@ -17,7 +17,7 @@ function deleteCall(basketName) {
         onClose: () => {
           document.location = "/";
         },
-        autoClose: 2000,
+        autoClose: 1000,
       });
     })
     .catch((error) => {
@@ -25,7 +25,7 @@ function deleteCall(basketName) {
         onClose: () => {
           document.location = "/";
         },
-        autoClose: 2000,
+        autoClose: 1000,
       });
     });
 }
@@ -39,7 +39,7 @@ export function BasketItemDelete(props) {
     return <LoadingSpinner />;
   } else {
     return (
-      <div className="container text-center">
+      <div className="container text-center py-5">
         <h4 className="text-center">
           Are you sure you want to delete item { basketName }?
         </h4>

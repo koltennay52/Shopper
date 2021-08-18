@@ -1,7 +1,7 @@
 //TODO
 
 import express from "express";
-import { indexPage, itemForm, deletePage, basketForm} from "../controllers/index";
+import { indexPage, itemForm, deletePage, basketForm, aboutPage} from "../controllers/index";
 import { getBasketContentsAPI, deleteWholeBasketAPI, updateBasketAPI, getPantryAPI, createBasketAPI } from "../controllers/basket"
 
 let router = express.Router();
@@ -9,6 +9,7 @@ let router = express.Router();
 export function configureRoutes(app) {
   //Pages
   router.get("/", indexPage);
+  router.get("/about", aboutPage);
 
 //Basket APIs 
 router.get('/api/basket/:basketName', getBasketContentsAPI);

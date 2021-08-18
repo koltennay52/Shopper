@@ -12,6 +12,7 @@ import { Register } from './components/Register'
 import { Login } from './components/Login'
 import { SignOut } from './components/SignOut'
 import { BasketItemDelete } from './components/BasketItemDelete'
+import { About } from './components/About'
 
 import 'bootstrap';
 import { BasketItemForm } from './components/BasketItemForm'
@@ -36,3 +37,7 @@ else if (document.getElementById('registerForm')) {
 else if (document.getElementById('loginForm')) {
   ReactDOM.render(<Login/>, document.getElementById('loginForm'))
 } 
+else if (document.getElementById('about')) {
+  ReactDOM.render(<About/>, document.getElementById('about'))
+} 
+

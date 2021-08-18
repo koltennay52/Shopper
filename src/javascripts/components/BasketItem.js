@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { BasketListItem } from "./BasketListItem";
 
 export function BasketItem(props) {
   const [basketItem, setBasketItem] = useState();
@@ -15,14 +15,32 @@ export function BasketItem(props) {
           .then((response) => response.text())
           .then((data) => {
             const retrievedItem = JSON.parse(data);
-            setBasketItem(retrievedItem);
+            setBasketItem(retrievedItem.items);
           });
       }
     }
   });
 
   if (!basketItem) {
-    return <LoadingSpinner />;
+    return (
+      <>
+        <div className="col-md-6 col-lg-4 my-3 mx-auto">
+          <div className="card" style={{ width: "18rem" }}>
+            <div className="card-body">
+              <h4 className="card-title text-center"> {basketName} </h4>
+              <div className="p-2 text-center">
+              <a href={ '/item/form?basketName=' + basketName } className="btn btn-secondary m-1">
+                Add Item
+              </a>
+              <a href={ '/item/delete?basketName=' + basketName } className="btn btn-danger m-1">
+                Delete Baskets
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
   } else {
     return (
       <>
@@ -31,16 +49,16 @@ export function BasketItem(props) {
             <div className="card-body">
               <h4 className="card-title text-center"> {basketName} </h4>
               <ul className="list-group">
-                <li className="list-group-item">Name: {basketItem.name} </li>
-                <li className="list-group-item">Description: {basketItem.description} </li>
-                <li className="list-group-item">Quantity: {basketItem.quantity} </li>
+                {basketItem.map((itemName) => {
+                return <BasketListItem key={itemName} itemName={itemName}/>;
+                })}
               </ul>
               <div className="p-2 text-center">
-              <a href={ '/item/form?basketName=' + basketName } className="btn btn-secondary mx-1">
-                Add/Edit
+              <a href={ '/item/form?basketName=' + basketName } className="btn btn-secondary m-1">
+                Add Item
               </a>
-              <a href={ '/item/delete?basketName=' + basketName } className="btn btn-danger mx-1">
-                Delete
+              <a href={ '/item/delete?basketName=' + basketName } className="btn btn-danger m-1">
+                Delete Basket
               </a>
               </div>
             </div>

@@ -6,45 +6,39 @@ import { toast } from "react-toastify";
 toast.configure();
 
 const validationSchema = yup.object({
-  name: yup.string().required(),
-  description: yup.string().required(),
-  quantity: yup.number().required().min(1)
+  itemname: yup.string().required()
 });
 
 export function BasketItemFormik(props) {
     const basketName = props.basketName;
-    let existingBasketItem;
-  if (props.basketItem.name) {
-        existingBasketItem = props.basketItem
-  }
+    const submitArray = [];
 
   const { handleSubmit, handleChange, values, errors, setFieldValue } =
     useFormik({
-      initialValues: !existingBasketItem
-        ? {
-            name: "",
-            description: "",
-            quantity: 0
-          }
-        : {
-            ...existingBasketItem,
+      initialValues: 
+         {
+            itemname: ""
           },
+      
       validationSchema,
       onSubmit(values) {
+        submitArray.push(values.itemname);
         fetch(`/api/basket/${basketName}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           credentials: "same-origin",
-          body: JSON.stringify(values),
+          body: JSON.stringify({
+            items: submitArray
+          }),
         })
           .then(() => {
             toast.success("Success!", {
               onClose: () => {
                 document.location = "/";
               },
-              autoClose: 2000,
+              autoClose: 1000,
             });
           })
           .catch((error) => {
@@ -52,7 +46,7 @@ export function BasketItemFormik(props) {
               onClose: () => {
                 document.location = "/";
               },
-              autoClose: 2000,
+              autoClose: 1000,
             });
           });
       },
@@ -68,31 +62,13 @@ export function BasketItemFormik(props) {
         type="text"
         className="form-control mb-4  input-shadow"
         placeholder="Name"
-        value={values.name}
+        value={values.itemname}
         onChange={handleChange}
-        name="name"
+        name="itemname"
       />
-      <p className="form-errors">{errors.name}</p>
+      <p className="form-errors">{errors.itemname}</p>
 
-      <textarea
-        className="form-control mb-4 input-shadow"
-        placeholder="Description"
-        value={values.description}
-        onChange={handleChange}
-        name="description"
-      />
-      <p className="form-errors">{errors.description}</p>
-
-
-      <input
-        type="number"
-        className="form-control mb-4  input-shadow"
-        placeholder="Quantity"
-        value={values.quantity}
-        onChange={handleChange}
-        name="quantity"
-      />
-      <p className="form-errors">{errors.quantity}</p>
+    
 
       <button
         className="btn btn-primary m-3"

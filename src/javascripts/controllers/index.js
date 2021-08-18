@@ -23,3 +23,8 @@ export const loginPage = (req, res, next) => {
     res.render('layout', {content: 'login'})
 }
 
+export const aboutPage = (req, res, next) => {
+    res.render('layout', {content: 'about'})
+}
+
+

@@ -27,7 +27,7 @@ export function BasketForm(props) {
             onClose: () => {
               document.location = "/";
             },
-            autoClose: 2000,
+            autoClose: 1000,
           });
         })
         .catch((error) => {
@@ -35,7 +35,7 @@ export function BasketForm(props) {
             onClose: () => {
               document.location = "/";
             },
-            autoClose: 2000,
+            autoClose: 1000,
           });
         });
     },

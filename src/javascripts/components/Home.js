@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { BasketItem } from "./BasketItem";
+import { About } from "./About";
 
 export function Home(props) {
   const [pantry, setPantry] = useState();
@@ -24,8 +25,8 @@ export function Home(props) {
   } else {
     return (
       <>
-        <h1 className="m-3 font-weight-bold text-secondary text-center">
-          My Items
+        <h1 className="m-1 text-center">
+          My Baskets
         </h1>
         <div className="container">
           <div className="row">
