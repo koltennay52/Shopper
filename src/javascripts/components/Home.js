@@ -25,7 +25,7 @@ export function Home(props) {
   } else {
     return (
       <>
-        <h1 className="m-1 text-center">
+        <h1 className="mt-3 text-center">
           My Baskets
         </h1>
         <div className="container">
